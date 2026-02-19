@@ -1,0 +1,26 @@
+---
+import { getCollection } from 'astro:content'
+import BlockList from '../../components/BlockList.astro'
+import ProjectLink from '../../components/ProjectLink.astro'
+import TwoColumnsLayout from '../../layouts/TwoColumnsLayout.astro'
+
+const projects = await getCollection('projects')
+---
+
+<TwoColumnsLayout>
+  <Fragment slot="sidebar"> Sidebar </Fragment>
+
+  <h1>Projekte</h1>
+
+  <BlockList>
+    {
+      projects.map((project) => (
+        <ProjectLink
+          id={project.id}
+          name={project.data.name}
+          languages={project.data.languages}
+        />
+      ))
+    }
+  </BlockList>
+</TwoColumnsLayout>

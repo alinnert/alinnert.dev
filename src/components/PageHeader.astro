@@ -1,0 +1,39 @@
+<header>
+  <nav>
+    <ul>
+      <li><a href="/" class="homepage-link">alinnert.dev</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/projekte">Projekte</a></li>
+    </ul>
+  </nav>
+</header>
+
+<style>
+  header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-inline: var(--spacing-4);
+    padding-block: var(--spacing-8);
+  }
+
+  nav {
+    grid-column: 3;
+  }
+
+  ul {
+    display: flex;
+    list-style-type: none;
+  }
+
+  nav a {
+    font-size: var(--text-lg);
+    display: inline flow-root;
+    padding-inline: var(--spacing-4);
+    padding-block: var(--spacing-2);
+  }
+
+  .homepage-link {
+    font-weight: var(--font-weight-bold);
+  }
+</style>

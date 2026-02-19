@@ -1,0 +1,37 @@
+---
+import Tag from './Tag.astro'
+
+type Props = { id: string; name: string; languages?: string[] }
+
+const { id, name, languages } = Astro.props
+---
+
+<article>
+  <header>
+    <a href={`/projekte/${id}`}>{name}</a>
+  </header>
+
+  {
+    languages !== undefined ? (
+      <ul class="tag-list">
+        {languages.map((l) => (
+          <li>
+            <Tag label={l} />
+          </li>
+        ))}
+      </ul>
+    ) : null
+  }
+</article>
+
+<style>
+  header a {
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .tag-list {
+    padding-block: var(--spacing-2);
+  }
+</style>

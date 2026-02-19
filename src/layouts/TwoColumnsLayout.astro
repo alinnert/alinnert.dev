@@ -1,0 +1,23 @@
+---
+import BaseLayout from './BaseLayout.astro'
+---
+
+<BaseLayout width="wide">
+  <div class="columns">
+    <div class="sidebar">
+      <slot name="sidebar" />
+    </div>
+    <main>
+      <slot />
+    </main>
+  </div>
+</BaseLayout>
+
+<style>
+  .columns {
+    display: grid;
+    column-gap: var(--spacing-4);
+    grid-template-columns: var(--container-3xs) 1fr;
+    padding-inline: var(--spacing-4);
+  }
+</style>

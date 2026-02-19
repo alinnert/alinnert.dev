@@ -1,0 +1,56 @@
+---
+import PageHeader from '../components/PageHeader.astro'
+import '../stylesheets/base.css'
+import '../stylesheets/layers.css'
+import '../stylesheets/reset.css'
+import '../stylesheets/tokens.css'
+import '../stylesheets/tools.css'
+
+type Props = { width?: 'wide' | 'normal' }
+
+const { width = 'normal' } = Astro.props
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>alinnert.dev</title>
+  </head>
+
+  <body>
+    <div
+      class="wrapper"
+      class:list={{
+        'normal-size': width === 'normal',
+        'wide-size': width === 'wide',
+      }}
+    >
+      <PageHeader />
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style>
+  :root {
+    background: light-dark(var(--color-slate-50), var(--color-slate-800));
+    color: light-dark(var(--color-slate-800), var(--color-slate-300));
+  }
+
+  .wrapper {
+    margin-inline: auto;
+    max-width: 100vw;
+
+    &.normal-size {
+      width: var(--container-2xl);
+    }
+
+    &.wide-size {
+      width: var(--container-4xl);
+    }
+  }
+</style>

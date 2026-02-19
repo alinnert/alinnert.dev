@@ -1,0 +1,20 @@
+---
+type Props = { label: string; color?: string; icon?: string }
+
+const { label, color, icon } = Astro.props
+---
+
+<span>
+  {label}
+</span>
+
+<style define:vars={{ 'tag-color': color }}>
+  span {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    padding-inline: var(--spacing-2);
+    padding-block: var(--spacing-1);
+    background: var(--tag-color, var(--color-slate-500));
+    border-radius: var(--radius-md);
+  }
+</style>
