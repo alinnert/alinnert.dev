@@ -1,10 +1,12 @@
 ---
 import PageHeader from '../components/PageHeader.astro'
-import '../stylesheets/base.css'
-import '../stylesheets/layers.css'
-import '../stylesheets/reset.css'
-import '../stylesheets/tokens.css'
-import '../stylesheets/tools.css'
+import '../stylesheets/0-layers/layers.css'
+import '../stylesheets/1-system/theme.css'
+import '../stylesheets/1-system/tokens.css'
+import '../stylesheets/1-system/tools.css'
+import '../stylesheets/2-reset/reset.css'
+import '../stylesheets/3-base/fonts.css'
+import '../stylesheets/3-base/base.css'
 
 type Props = { width?: 'wide' | 'normal' }
 
@@ -37,13 +39,14 @@ const { width = 'normal' } = Astro.props
 
 <style>
   :root {
-    background: light-dark(var(--color-slate-50), var(--color-slate-800));
-    color: light-dark(var(--color-slate-800), var(--color-slate-300));
+    background: var(--theme-page--bg);
+    color: var(--theme-page--text-color);
   }
 
   .wrapper {
     margin-inline: auto;
     max-width: 100vw;
+    padding-inline: var(--theme-page--spacing-x);
 
     &.normal-size {
       width: var(--container-2xl);

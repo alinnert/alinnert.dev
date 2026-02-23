@@ -1,0 +1,43 @@
+@layer base {
+  :root {
+    color-scheme: light dark;
+    font-family: var(--font-sans);
+    font-feature-settings:
+      'liga' 1,
+      'calt' 1; /* fix for Chrome */
+  }
+
+  a {
+    color: var(--theme-link--text-color);
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  p {
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+
+  pre {
+    font-size: var(--text-base);
+    line-height: 2;
+    tab-size: 4;
+  }
+
+  code {
+    font-family: var(--font-mono);
+  }
+
+  code:not(pre code) {
+    color: var(--theme-page--text-color--code);
+  }
+
+  main {
+    :first-child {
+      margin-top: 0;
+    }
+  }
+}

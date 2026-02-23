@@ -1,20 +1,18 @@
 ---
-type Props = { label: string; color?: string; icon?: string }
+type Props = { tag: string; color?: string; icon?: string }
 
-const { label, color, icon } = Astro.props
+const { tag, color, icon } = Astro.props
 ---
 
-<span>
-  {label}
-</span>
+<span>{tag}</span>
 
 <style define:vars={{ 'tag-color': color }}>
   span {
-    font-size: var(--text-sm);
+    font-size: var(--text-xs);
     font-weight: var(--font-weight-bold);
     padding-inline: var(--spacing-2);
-    padding-block: var(--spacing-1);
-    background: var(--tag-color, var(--color-slate-500));
+    padding-block: var(--spacing-05);
+    background: var(--tag-color, var(--color-sky-700));
     border-radius: var(--radius-md);
   }
 </style>

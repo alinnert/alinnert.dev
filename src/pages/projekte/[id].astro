@@ -25,7 +25,7 @@ const { Content } = await render(project)
     <dd>{project.data.languages.join(', ')}</dd>
 
     {
-      project.data.styles !== null ? (
+      project.data.styles !== undefined ? (
         <Fragment>
           <dt>Styles</dt>
           <dd>{project.data.styles?.join(', ')}</dd>
@@ -34,7 +34,7 @@ const { Content } = await render(project)
     }
 
     {
-      project.data.frameworks !== null ? (
+      project.data.frameworks !== undefined ? (
         <Fragment>
           <dt>Frameworks</dt>
           <dd>{project.data.frameworks?.join(', ')}</dd>
@@ -43,7 +43,7 @@ const { Content } = await render(project)
     }
 
     {
-      project.data.libraries !== null ? (
+      project.data.libraries !== undefined ? (
         <Fragment>
           <dt>Bibliotheken</dt>
           <dd>{project.data.libraries?.join(', ')}</dd>

@@ -10,11 +10,23 @@
 
 <style>
   header {
+    --header-spacing: calc(var(--theme-page--spacing-x) * 0.5);
+    --header-spacing-neg: calc(var(--header-spacing) * -1);
+
     display: flex;
-    justify-content: center;
     align-items: center;
-    padding-inline: var(--spacing-4);
-    padding-block: var(--spacing-8);
+    justify-content: center;
+    position: sticky;
+    top: var(--header-spacing);
+    margin-block: var(--spacing-8);
+    margin-inline: var(--header-spacing-neg);
+    padding-block: var(--spacing-2);
+    padding-inline: var(--spacing-2);
+    border-radius: var(--theme-card--radius);
+    background: var(--theme-glass--bg);
+    backdrop-filter: blur(var(--theme-glass--blur));
+    border: var(--theme-glass--border);
+    box-shadow: var(--theme-glass--shadow);
   }
 
   nav {
@@ -27,13 +39,14 @@
   }
 
   nav a {
+    color: var(--theme-nav--text-color);
     font-size: var(--text-lg);
     display: inline flow-root;
-    padding-inline: var(--spacing-4);
+    padding-inline: var(--spacing-3);
     padding-block: var(--spacing-2);
   }
 
   .homepage-link {
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--font-weight-semibold);
   }
 </style>

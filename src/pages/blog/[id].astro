@@ -1,0 +1,33 @@
+---
+import type { GetStaticPaths } from 'astro'
+import OneColumnLayout from '../../layouts/OneColumnLayout.astro'
+import { getCollection } from 'astro:content'
+import { render } from 'astro:content'
+import TagList from '../../components/TagList.astro'
+
+export const getStaticPaths = (async () => {
+  const articles = await getCollection('blog')
+  return articles.map((article) => ({
+    params: { id: article.id },
+    props: { article },
+  }))
+}) satisfies GetStaticPaths
+
+const { article } = Astro.props
+const { Content } = await render(article)
+---
+
+<OneColumnLayout title={article.data.title}>
+  <article>
+    <TagList tags={article.data.tags} />
+    
+    <Content />
+  </article>
+</OneColumnLayout>
+
+<style>
+  .tags {
+    display: flex;
+    gap: var(--spacing-4);
+  }
+</style>

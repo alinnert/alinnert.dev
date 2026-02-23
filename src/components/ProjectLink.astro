@@ -16,7 +16,7 @@ const { id, name, languages } = Astro.props
       <ul class="tag-list">
         {languages.map((l) => (
           <li>
-            <Tag label={l} />
+            <Tag tag={l} />
           </li>
         ))}
       </ul>

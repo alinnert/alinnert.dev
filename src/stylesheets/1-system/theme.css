@@ -1,0 +1,78 @@
+@layer system {
+  :root {
+    --theme-palette-neutral-50: var(--color-mist-50);
+    --theme-palette-neutral-100: var(--color-mist-100);
+    --theme-palette-neutral-200: var(--color-mist-200);
+    --theme-palette-neutral-300: var(--color-mist-300);
+    --theme-palette-neutral-400: var(--color-mist-400);
+    --theme-palette-neutral-500: var(--color-mist-500);
+    --theme-palette-neutral-600: var(--color-mist-600);
+    --theme-palette-neutral-700: var(--color-mist-700);
+    --theme-palette-neutral-800: var(--color-mist-800);
+    --theme-palette-neutral-900: var(--color-mist-900);
+    --theme-palette-neutral-950: var(--color-mist-950);
+
+    --theme-palette-primary-50: var(--color-sky-50);
+    --theme-palette-primary-100: var(--color-sky-100);
+    --theme-palette-primary-200: var(--color-sky-200);
+    --theme-palette-primary-300: var(--color-sky-300);
+    --theme-palette-primary-400: var(--color-sky-400);
+    --theme-palette-primary-500: var(--color-sky-500);
+    --theme-palette-primary-600: var(--color-sky-600);
+    --theme-palette-primary-700: var(--color-sky-700);
+    --theme-palette-primary-800: var(--color-sky-800);
+    --theme-palette-primary-900: var(--color-sky-900);
+    --theme-palette-primary-950: var(--color-sky-950);
+
+    --theme-palette-code-50: var(--color-rose-50);
+    --theme-palette-code-100: var(--color-rose-100);
+    --theme-palette-code-200: var(--color-rose-200);
+    --theme-palette-code-300: var(--color-rose-300);
+    --theme-palette-code-400: var(--color-rose-400);
+    --theme-palette-code-500: var(--color-rose-500);
+    --theme-palette-code-600: var(--color-rose-600);
+    --theme-palette-code-700: var(--color-rose-700);
+    --theme-palette-code-800: var(--color-rose-800);
+    --theme-palette-code-900: var(--color-rose-900);
+    --theme-palette-code-950: var(--color-rose-950);
+
+    --theme-page--spacing-x: var(--spacing-4);
+    --theme-page--bg: light-dark(
+      var(--theme-palette-neutral-200),
+      var(--theme-palette-neutral-800)
+    );
+    --theme-page--text-color: light-dark(
+      var(--theme-palette-neutral-800),
+      var(--theme-palette-neutral-300)
+    );
+    --theme-page--text-color--code: light-dark(
+      var(--theme-palette-code-800),
+      var(--theme-palette-code-300)
+    );
+
+    --theme-link--text-color: light-dark(
+      var(--theme-palette-primary-700),
+      var(--theme-palette-primary-300)
+    );
+
+    --theme-card--bg: light-dark(
+      var(--theme-palette-neutral-50),
+      var(--theme-palette-neutral-700)
+    );
+    --theme-card--radius: var(--radius-lg);
+
+    --theme-glass--bg: rgb(from var(--theme-card--bg) r g b / 60%);
+    --theme-glass--blur: var(--blur-sm);
+    --theme-glass--border: 1px solid
+      light-dark(
+        var(--theme-palette-neutral-300),
+        var(--theme-palette-neutral-600)
+      );
+    --theme-glass--shadow: var(--shadow-lg);
+
+    --theme-nav--text-color: light-dark(
+      var(--theme-palette-neutral-700),
+      var(--theme-palette-neutral-300)
+    );
+  }
+}

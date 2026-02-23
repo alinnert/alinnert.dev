@@ -1,0 +1,49 @@
+---
+import TagList from './TagList.astro'
+
+type Props = { title: string; url: string; published: Date; tags?: string[] }
+
+const { title, url, published, tags } = Astro.props
+---
+
+<article>
+  <header>
+    <div class="published-date">
+      {
+        published.toLocaleString('de-DE', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric',
+        })
+      }
+    </div>
+    <h2><a href={url}>{title}</a></h2>
+  </header>
+
+  <TagList tags={tags} />
+</article>
+
+<style>
+  article {
+    display: grid;
+    gap: var(--spacing-2);
+    background: var(--theme-card--bg);
+    padding: var(--spacing-4);
+    border-radius: var(--radius-lg);
+  }
+
+  header {
+    display: grid;
+    gap: var(--spacing-1);
+  }
+
+  .published-date {
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: var(--text-lg);
+  }
+</style>

@@ -3,8 +3,7 @@ name: AWE.write
 type: frontend
 languages: [TypeScript]
 styles: [CSS]
-frameworks:
-libraries:
+repository: https://github.com/alinnert/awewrite
 ---
 
 Ein web-basierter Texteditor.
