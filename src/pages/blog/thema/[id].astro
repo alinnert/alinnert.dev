@@ -1,10 +1,11 @@
 ---
 import type { GetStaticPaths } from 'astro'
 import { getCollection } from 'astro:content'
-import ArticleLink from '../../../components/ArticleLink.astro'
-import BlockList from '../../../components/BlockList.astro'
+import Card from '../../../components/Card.astro'
+import ContentGrid from '../../../components/ContentGrid.astro'
 import TwoColumnsLayout from '../../../layouts/TwoColumnsLayout.astro'
-import ArticleTopicsListWidget from '../../../components/ArticleTopicsListWidget.astro'
+import ArticleTopicsList from '../../../widgets/ArticleTopicsList.astro'
+import ArticlesList from '../../../widgets/ArticlesList.astro'
 
 const articles = await getCollection('blog')
 
@@ -28,21 +29,10 @@ const articlesWithTag = articles.filter((a) =>
 
 <TwoColumnsLayout title={`Beiträge zum Thema "${topic}"`}>
   <Fragment slot="sidebar">
-    <ArticleTopicsListWidget />
+    <ArticleTopicsList />
   </Fragment>
 
-  <BlockList columns={2}>
-    {
-      articlesWithTag
-        .toSorted((a, b) => (a.data.published < b.data.published ? 1 : -1))
-        .map((article) => (
-          <ArticleLink
-            title={article.data.title}
-            url={`/blog/${article.id}`}
-            published={article.data.published}
-            topics={article.data.topics}
-          />
-        ))
-    }
-  </BlockList>
+  <ContentGrid columns={2}>
+    <ArticlesList topic={topic} />
+  </ContentGrid>
 </TwoColumnsLayout>

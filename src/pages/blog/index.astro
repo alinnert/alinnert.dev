@@ -1,16 +1,16 @@
 ---
-import ArticlesListWidget from '../../components/ArticlesListWidget.astro'
-import ArticleTopicsListWidget from '../../components/ArticleTopicsListWidget.astro'
-import BlockList from '../../components/BlockList.astro'
+import ContentGrid from '../../components/ContentGrid.astro'
 import TwoColumnsLayout from '../../layouts/TwoColumnsLayout.astro'
+import ArticlesList from '../../widgets/ArticlesList.astro'
+import ArticleTopicsList from '../../widgets/ArticleTopicsList.astro'
 ---
 
 <TwoColumnsLayout title="Alle Beiträge">
   <Fragment slot="sidebar">
-    <ArticleTopicsListWidget />
+    <ArticleTopicsList />
   </Fragment>
 
-  <BlockList columns={2}>
-    <ArticlesListWidget />
-  </BlockList>
+  <ContentGrid columns={2}>
+    <ArticlesList />
+  </ContentGrid>
 </TwoColumnsLayout>

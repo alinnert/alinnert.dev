@@ -1,25 +1,41 @@
 ---
-import { tagColorFromName } from '../lib/tagColor'
+import { Icon } from 'astro-icon/components'
+import { tagColorFromName, tagIconFromName } from '../lib/tagColor'
 
 type Props = { name: string; color?: string; urlPrefix?: string }
 
 const { name, color, urlPrefix } = Astro.props
 
 const tagColor = color !== undefined ? color : tagColorFromName(name)
+const tagIcon = tagIconFromName(name)
 ---
 
 {
   urlPrefix === undefined ? (
-    <span>{name}</span>
+    <span class="label">
+      {tagIcon !== null ? (
+        <span>
+          <Icon name={tagIcon} />
+        </span>
+      ) : null}
+      <span>{name}</span>
+    </span>
   ) : (
     <a href={`${urlPrefix}/${name.toLowerCase()}`}>
-      <span>{name}</span>
+      <span class="label">
+        {tagIcon !== null ? (
+          <span>
+            <Icon name={tagIcon} />
+          </span>
+        ) : null}
+        <span>{name}</span>
+      </span>
     </a>
   )
 }
 
 <style define:vars={{ 'tag-color': tagColor }}>
-  span {
+  .label {
     --gradient-base: var(--tag-color, var(--theme-palette-neutral-light-500));
     --gradient-target: oklch(
       from var(--gradient-base) calc(l * 0.8) calc(c * 1.2) calc(h - 5)
@@ -29,7 +45,9 @@ const tagColor = color !== undefined ? color : tagColorFromName(name)
       --gradient-base: var(--tag-color, var(--theme-palette-neutral-dark-600));
     }
 
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-2);
     color: white;
     font-size: var(--text-xs);
     font-weight: var(--font-weight-bold);
@@ -41,5 +59,9 @@ const tagColor = color !== undefined ? color : tagColorFromName(name)
       var(--gradient-target)
     );
     border-radius: var(--radius-md);
+  }
+
+  span:has(> svg) {
+    line-height: 0;
   }
 </style>

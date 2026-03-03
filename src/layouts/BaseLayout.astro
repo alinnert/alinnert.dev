@@ -1,13 +1,13 @@
 ---
-import PageHeader from '../components/PageHeader.astro'
 import '../stylesheets/0-layers/layers.css'
 import '../stylesheets/1-system/theme.css'
 import '../stylesheets/1-system/tokens.css'
 import '../stylesheets/1-system/tools.css'
 import '../stylesheets/2-reset/reset.css'
-import '../stylesheets/3-base/fonts.css'
 import '../stylesheets/3-base/base.scss'
+import '../stylesheets/3-base/fonts.css'
 import '../stylesheets/palettes.scss'
+import PageHeader from '../widgets/PageHeader.astro'
 
 type Props = { width?: 'wide' | 'normal' }
 
@@ -56,7 +56,7 @@ const { width = 'normal' } = Astro.props
     }
 
     &.wide-size {
-      width: var(--container-4xl);
+      width: var(--container-5xl);
     }
   }
 </style>

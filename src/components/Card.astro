@@ -1,10 +1,17 @@
 ---
-import BadgeList from './BadgeList.astro'
 import IconProperty from './IconProperty.astro'
 
-type Props = { title: string; url: string; published: Date; topics?: string[] }
+export type Property = {
+  icon: string
+  content: any
+}
 
-const { title, url, published, topics } = Astro.props
+type Props = {
+  title: string
+  url: string
+}
+
+const { title, url } = Astro.props
 ---
 
 <article>
@@ -13,18 +20,7 @@ const { title, url, published, topics } = Astro.props
   </header>
 
   <div class="properties">
-    <IconProperty icon="ion:calendar-outline">
-      {
-        published.toLocaleString('de-DE', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        })
-      }
-    </IconProperty>
-    <IconProperty icon="ion:pricetag-outline">
-      <BadgeList items={topics} urlPrefix="/blog/thema" />
-    </IconProperty>
+    <slot name="props" />
   </div>
 </article>
 
@@ -44,7 +40,8 @@ const { title, url, published, topics } = Astro.props
 
   .properties {
     display: grid;
-    gap: var(--spacing-2);
+    grid-template-columns: auto 1fr;
+    row-gap: var(--spacing-2);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-bold);
     color: var(--theme-page--text-color--muted);

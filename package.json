@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -12,11 +12,11 @@
     "astro": "^5.17.1",
     "astro-expressive-code": "^0.41.7",
     "remark-directive": "^4.0.0",
-    "remark-github-admonitions-to-directives": "^2.1.0",
-    "simple-icons": "^16.9.0"
+    "remark-github-admonitions-to-directives": "^2.1.0"
   },
   "devDependencies": {
     "@iconify-json/ion": "^1.2.6",
+    "@iconify-json/simple-icons": "^1.2.72",
     "@types/mdast": "^4.0.4",
     "astro-icon": "^1.1.5",
     "hastscript": "^9.0.1",

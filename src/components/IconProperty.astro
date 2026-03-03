@@ -1,16 +1,15 @@
 ---
 import { Icon } from 'astro-icon/components'
 
-type Props = {
-  icon: string
-}
+type Props = { icon: string; label?: string }
 
-const { icon } = Astro.props
+const { icon, label } = Astro.props
 ---
 
 <div class="property">
   <span class="icon">
     <Icon name={icon} />
+    {label !== undefined ? <span class="label">{label}</span> : null}
   </span>
   <span>
     <slot />
@@ -19,14 +18,23 @@ const { icon } = Astro.props
 
 <style>
   .property {
+    grid-column-start: 1;
+    grid-column-end: -1;
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: subgrid;
     align-items: first baseline;
-    gap: var(--spacing-2);
+    column-gap: var(--spacing-2);
   }
 
   .icon {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
     position: relative;
     top: 2px;
+  }
+
+  .label {
+    margin-right: var(--spacing-4);
   }
 </style>
