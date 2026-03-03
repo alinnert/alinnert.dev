@@ -1,0 +1,27 @@
+@use './mixins/palette.scss' as *;
+
+:root {
+  @include palette($name: 'neutral', $hue: 285, $chroma: 0.02);
+  @include palette($name: 'primary', $hue: 180, $chroma: 0.1);
+  @include palette($name: 'code', $hue: 220, $chroma: 0.05);
+  @include palette($name: 'link', $hue: 220, $chroma: 0.1);
+
+  --gradient-primary-base-hue: 180;
+  --gradient-primary-base: oklch(0.6 0.16 var(--gradient-primary-base-hue));
+
+  @media (prefers-color-scheme: dark) {
+    --gradient-primary-base: oklch(0.8 0.16 var(--gradient-primary-base-hue));
+  }
+
+  --gradient-primary: linear-gradient(
+    135deg in oklch increasing hue,
+    var(--gradient-primary-base),
+    oklch(from var(--gradient-primary-base) l c calc(h + 180))
+  );
+
+  --gradient-logo: linear-gradient(
+    to right in oklch,
+    var(--palette-primary-text-muted),
+    oklch(from var(--palette-primary-text-muted) l c calc(h + 50))
+  );
+}

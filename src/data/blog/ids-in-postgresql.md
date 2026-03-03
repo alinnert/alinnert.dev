@@ -1,7 +1,7 @@
 ---
-title: 'IDs in PostgreSQL'
+title: 'Geeignete Typen für Primärschlüssel in PostgreSQL'
 published: 2026-02-23
-tags:
+topics:
   - Datenbanken
   - PostgreSQL
 ---
@@ -24,10 +24,10 @@ Wenn der Zeitpunkt, an dem ein Datensatz erstellt wurde, keine geheime Informati
 
 Das `CREATE TABLE`-Statement kann dann folgendermaßen aussehen:
 
-```sql
+```sql "UUID" "uuidv7()"
 CREATE TABLE "posts" {
 	"id" UUID PRIMARY KEY DEFAULT uuidv7(),
-	# weitere Spalten...
+	# weitere Spalten
 }
 ```
 
@@ -39,7 +39,7 @@ Die interne ID ist dabei am besten vom Typ `BIGINT` und ein klassischer selbstin
 
 Das `CREATE TABLE`-Statement kann dann folgendermaßen aussehen:
 
-```sql
+```sql "BIGINT" "GENERATED ALWAYS AS IDENTITY" "UUID" "uuidv4()"
 CREATE TABLE "users" {
 	"id" BIGINT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
 	"external_id" UUID UNIQUE DEFAULT uuidv4(),

@@ -1,5 +1,5 @@
 ---
-import Tag from './Tag.astro'
+import Badge from './Badge.astro'
 
 type Props = { id: string; name: string; languages?: string[] }
 
@@ -16,7 +16,7 @@ const { id, name, languages } = Astro.props
       <ul class="tag-list">
         {languages.map((l) => (
           <li>
-            <Tag tag={l} />
+            <Badge name={l} />
           </li>
         ))}
       </ul>
@@ -24,14 +24,16 @@ const { id, name, languages } = Astro.props
   }
 </article>
 
-<style>
+<style lang="scss">
+  @use '../stylesheets/mixins/card.scss' as *;
+
+  article {
+    @include card();
+  }
+
   header a {
     font-size: var(--text-lg);
     line-height: var(--text-lg--line-height);
     font-weight: var(--font-weight-bold);
-  }
-
-  .tag-list {
-    padding-block: var(--spacing-2);
   }
 </style>

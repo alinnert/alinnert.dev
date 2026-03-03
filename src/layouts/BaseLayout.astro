@@ -6,7 +6,8 @@ import '../stylesheets/1-system/tokens.css'
 import '../stylesheets/1-system/tools.css'
 import '../stylesheets/2-reset/reset.css'
 import '../stylesheets/3-base/fonts.css'
-import '../stylesheets/3-base/base.css'
+import '../stylesheets/3-base/base.scss'
+import '../stylesheets/palettes.scss'
 
 type Props = { width?: 'wide' | 'normal' }
 
@@ -24,6 +25,8 @@ const { width = 'normal' } = Astro.props
   </head>
 
   <body>
+    <PageHeader />
+
     <div
       class="wrapper"
       class:list={{
@@ -31,7 +34,6 @@ const { width = 'normal' } = Astro.props
         'wide-size': width === 'wide',
       }}
     >
-      <PageHeader />
       <slot />
     </div>
   </body>
@@ -47,6 +49,7 @@ const { width = 'normal' } = Astro.props
     margin-inline: auto;
     max-width: 100vw;
     padding-inline: var(--theme-page--spacing-x);
+    padding-block: var(--theme-page--spacing-y);
 
     &.normal-size {
       width: var(--container-2xl);

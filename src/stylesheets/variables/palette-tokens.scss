@@ -1,0 +1,82 @@
+$tokens: (
+  text: (
+    light: (
+      lightness: 0.3,
+      chroma-factor: 1,
+    ),
+    dark: (
+      lightness: 0.9,
+      chroma-factor: 1,
+    ),
+  ),
+  text-muted: (
+    light: (
+      lightness: 0.55,
+      chroma-factor: 1,
+    ),
+    dark: (
+      lightness: 0.8,
+      chroma-factor: 1,
+    ),
+  ),
+  text-bright: (
+    light: (
+      lightness: 0.6,
+      chroma-factor: 1.2,
+    ),
+    dark: (
+      lightness: 0.75,
+      chroma-factor: 1,
+    ),
+  ),
+  text-inverted: (
+    light: (
+      lightness: 0.8,
+      chroma-factor: 1,
+    ),
+    dark: (
+      lightness: 0.3,
+      chroma-factor: 0.4,
+    ),
+  ),
+  bg: (
+    light: (
+      lightness: 0.95,
+      chroma-factor: 0.5,
+    ),
+    dark: (
+      lightness: 0.35,
+      chroma-factor: 2,
+    ),
+  ),
+  bg-bright: (
+    light: (
+      lightness: 0.98,
+      chroma-factor: 0.5,
+    ),
+    dark: (
+      lightness: 0.4,
+      chroma-factor: 2,
+    ),
+  ),
+  bg-dark: (
+    light: (
+      lightness: 0.9,
+      chroma-factor: 1,
+    ),
+    dark: (
+      lightness: 0.45,
+      chroma-factor: 2,
+    ),
+  ),
+  border: (
+    light: (
+      lightness: 0.9,
+      chroma-factor: 1,
+    ),
+    dark: (
+      lightness: 0.47,
+      chroma-factor: 1,
+    ),
+  ),
+);

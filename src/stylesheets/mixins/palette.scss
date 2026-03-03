@@ -1,0 +1,24 @@
+@use 'sass:map';
+@use '../variables/palette-tokens.scss' as *;
+
+@mixin palette($name, $hue, $chroma) {
+  @each $token, $values in $tokens {
+    $light-data: map.get($values, 'light');
+    $dark-data: map.get($values, 'dark');
+
+    $light-lightness: map.get($light-data, 'lightness');
+    $dark-lightness: map.get($dark-data, 'lightness');
+
+    $light-chroma-factor: map.get($light-data, 'chroma-factor');
+    $dark-chroma-factor: map.get($dark-data, 'chroma-factor');
+
+    $light-chroma: $chroma * $light-chroma-factor;
+    $dark-chroma: $chroma * $dark-chroma-factor;
+
+    --palette-#{$name}-#{$token}: oklch(#{$light-lightness $light-chroma $hue});
+
+    @media (prefers-color-scheme: dark) {
+      --palette-#{$name}-#{$token}: oklch(#{$dark-lightness $dark-chroma $hue});
+    }
+  }
+}

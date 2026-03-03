@@ -7,10 +7,10 @@ import TwoColumnsLayout from '../../layouts/TwoColumnsLayout.astro'
 const projects = await getCollection('projects')
 ---
 
-<TwoColumnsLayout title='Projekte'>
+<TwoColumnsLayout title="Persönliche Projekte">
   <Fragment slot="sidebar"> Sidebar </Fragment>
 
-  <BlockList>
+  <BlockList columns={2}>
     {
       projects.map((project) => (
         <ProjectLink

@@ -1,0 +1,83 @@
+@use '../mixins/text-gradient.scss' as *;
+
+@layer base {
+  :root {
+    color-scheme: light dark;
+    font-family: var(--font-sans);
+    font-feature-settings:
+      'liga' 1,
+      'calt' 1; /* fix for Chrome */
+    scroll-padding-top: 100px;
+  }
+
+  h1 {
+    @include text-gradient(var(--gradient-primary));
+    font-weight: 800;
+    margin: var(--spacing-8) 0 var(--spacing-4);
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    color: var(--palette-primary-text-muted);
+  }
+
+  a {
+    color: var(--theme-link--text-color);
+    text-decoration: none;
+  }
+
+  p {
+    font-size: var(--text-lg);
+    line-height: var(--text-lg--line-height);
+  }
+
+  article {
+    h2 {
+      font-size: var(--text-2xl);
+      margin-top: var(--spacing-16);
+    }
+  }
+
+  pre {
+    font-size: var(--text-base);
+    line-height: 1.8;
+    tab-size: 2;
+    padding-block: var(--spacing-2);
+    padding-inline: var(--spacing-4);
+    border: 1px solid var(--palette-neutral-border);
+    border-radius: var(--radius-lg);
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+
+    p & {
+      background: var(--palette-neutral-bg-dark);
+      padding-inline: var(--spacing-1_5);
+      border-radius: var(--radius-sm);
+    }
+  }
+
+  code:not(pre code) {
+    color: var(--palette-code-text);
+  }
+
+  main {
+    :first-child {
+      margin-top: 0;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .astro-code,
+    .astro-code span {
+      color: var(--shiki-dark) !important;
+      background-color: var(--shiki-dark-bg) !important;
+      /* Optional, if you also want font styles */
+      font-style: var(--shiki-dark-font-style) !important;
+      font-weight: var(--shiki-dark-font-weight) !important;
+      text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
+  }
+}

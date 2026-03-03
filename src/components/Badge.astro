@@ -1,0 +1,45 @@
+---
+import { tagColorFromName } from '../lib/tagColor'
+
+type Props = { name: string; color?: string; urlPrefix?: string }
+
+const { name, color, urlPrefix } = Astro.props
+
+const tagColor = color !== undefined ? color : tagColorFromName(name)
+---
+
+{
+  urlPrefix === undefined ? (
+    <span>{name}</span>
+  ) : (
+    <a href={`${urlPrefix}/${name.toLowerCase()}`}>
+      <span>{name}</span>
+    </a>
+  )
+}
+
+<style define:vars={{ 'tag-color': tagColor }}>
+  span {
+    --gradient-base: var(--tag-color, var(--theme-palette-neutral-light-500));
+    --gradient-target: oklch(
+      from var(--gradient-base) calc(l * 0.8) calc(c * 1.2) calc(h - 5)
+    );
+
+    @media (prefers-color-scheme: dark) {
+      --gradient-base: var(--tag-color, var(--theme-palette-neutral-dark-600));
+    }
+
+    display: inline-block;
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-bold);
+    padding-inline: var(--spacing-2);
+    padding-block: var(--spacing-1);
+    background: linear-gradient(
+      110deg in oklch,
+      var(--gradient-base),
+      var(--gradient-target)
+    );
+    border-radius: var(--radius-md);
+  }
+</style>

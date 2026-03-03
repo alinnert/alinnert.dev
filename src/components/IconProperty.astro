@@ -1,0 +1,32 @@
+---
+import { Icon } from 'astro-icon/components'
+
+type Props = {
+  icon: string
+}
+
+const { icon } = Astro.props
+---
+
+<div class="property">
+  <span class="icon">
+    <Icon name={icon} />
+  </span>
+  <span>
+    <slot />
+  </span>
+</div>
+
+<style>
+  .property {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: first baseline;
+    gap: var(--spacing-2);
+  }
+
+  .icon {
+    position: relative;
+    top: 2px;
+  }
+</style>

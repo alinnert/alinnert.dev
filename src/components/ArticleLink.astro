@@ -1,14 +1,19 @@
 ---
-import TagList from './TagList.astro'
+import BadgeList from './BadgeList.astro'
+import IconProperty from './IconProperty.astro'
 
-type Props = { title: string; url: string; published: Date; tags?: string[] }
+type Props = { title: string; url: string; published: Date; topics?: string[] }
 
-const { title, url, published, tags } = Astro.props
+const { title, url, published, topics } = Astro.props
 ---
 
 <article>
   <header>
-    <div class="published-date">
+    <h2><a href={url}>{title}</a></h2>
+  </header>
+
+  <div class="properties">
+    <IconProperty icon="ion:calendar-outline">
       {
         published.toLocaleString('de-DE', {
           day: 'numeric',
@@ -16,34 +21,41 @@ const { title, url, published, tags } = Astro.props
           year: 'numeric',
         })
       }
-    </div>
-    <h2><a href={url}>{title}</a></h2>
-  </header>
-
-  <TagList tags={tags} />
+    </IconProperty>
+    <IconProperty icon="ion:pricetag-outline">
+      <BadgeList items={topics} urlPrefix="/blog/thema" />
+    </IconProperty>
+  </div>
 </article>
 
-<style>
+<style lang="scss">
+  @use '../stylesheets/mixins/card.scss' as *;
+
   article {
+    @include card();
     display: grid;
-    gap: var(--spacing-2);
-    background: var(--theme-card--bg);
-    padding: var(--spacing-4);
-    border-radius: var(--radius-lg);
+    grid-template-rows: auto 1fr;
+    align-items: start;
   }
 
   header {
-    display: grid;
-    gap: var(--spacing-1);
+    margin-bottom: var(--spacing-4);
   }
 
-  .published-date {
+  .properties {
+    display: grid;
+    gap: var(--spacing-2);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-bold);
+    color: var(--theme-page--text-color--muted);
   }
 
   h2 {
     margin: 0;
     font-size: var(--text-lg);
+
+    a {
+      color: var(--palette-neutral-text);
+    }
   }
 </style>

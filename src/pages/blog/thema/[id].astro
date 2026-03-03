@@ -1,0 +1,48 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { getCollection } from 'astro:content'
+import ArticleLink from '../../../components/ArticleLink.astro'
+import BlockList from '../../../components/BlockList.astro'
+import TwoColumnsLayout from '../../../layouts/TwoColumnsLayout.astro'
+import ArticleTopicsListWidget from '../../../components/ArticleTopicsListWidget.astro'
+
+const articles = await getCollection('blog')
+
+export const getStaticPaths = (async () => {
+  const articles = await getCollection('blog')
+  const topics = Array.from(
+    new Set(articles.flatMap((a) => a.data.topics ?? [])),
+  )
+  return topics.map((topic) => ({
+    params: { id: topic.toLowerCase() },
+    props: { tag: topic },
+  }))
+}) satisfies GetStaticPaths
+
+const { tag: topic } = Astro.props
+
+const articlesWithTag = articles.filter((a) =>
+  (a.data.topics ?? []).includes(topic),
+)
+---
+
+<TwoColumnsLayout title={`Beiträge zum Thema "${topic}"`}>
+  <Fragment slot="sidebar">
+    <ArticleTopicsListWidget />
+  </Fragment>
+
+  <BlockList columns={2}>
+    {
+      articlesWithTag
+        .toSorted((a, b) => (a.data.published < b.data.published ? 1 : -1))
+        .map((article) => (
+          <ArticleLink
+            title={article.data.title}
+            url={`/blog/${article.id}`}
+            published={article.data.published}
+            topics={article.data.topics}
+          />
+        ))
+    }
+  </BlockList>
+</TwoColumnsLayout>

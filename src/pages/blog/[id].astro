@@ -1,9 +1,8 @@
 ---
 import type { GetStaticPaths } from 'astro'
+import { getCollection, render } from 'astro:content'
+import BadgeList from '../../components/BadgeList.astro'
 import OneColumnLayout from '../../layouts/OneColumnLayout.astro'
-import { getCollection } from 'astro:content'
-import { render } from 'astro:content'
-import TagList from '../../components/TagList.astro'
 
 export const getStaticPaths = (async () => {
   const articles = await getCollection('blog')
@@ -18,16 +17,15 @@ const { Content } = await render(article)
 ---
 
 <OneColumnLayout title={article.data.title}>
+  <BadgeList items={article.data.topics} urlPrefix="/blog/thema" />
+
   <article>
-    <TagList tags={article.data.tags} />
-    
     <Content />
   </article>
 </OneColumnLayout>
 
 <style>
-  .tags {
-    display: flex;
-    gap: var(--spacing-4);
+  article {
+    margin-top: var(--spacing-16);
   }
 </style>

@@ -1,0 +1,6 @@
+@mixin card() {
+  background: var(--palette-neutral-bg-bright);
+  border: 1px solid var(--palette-neutral-border);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-4);
+}

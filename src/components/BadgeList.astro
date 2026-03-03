@@ -1,0 +1,26 @@
+---
+import Badge from './Badge.astro'
+
+type Props = { items?: string[]; urlPrefix: string }
+const { items = [], urlPrefix } = Astro.props
+---
+
+{
+  items.length > 0 ? (
+    <ul>
+      {items.map((tag) => (
+        <li>
+          <Badge name={tag} urlPrefix={urlPrefix} />
+        </li>
+      ))}
+    </ul>
+  ) : null
+}
+
+<style>
+  ul {
+    display: flex;
+    gap: var(--spacing-1);
+    flex-wrap: wrap;
+  }
+</style>

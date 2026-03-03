@@ -1,0 +1,14 @@
+---
+import { getCollection } from 'astro:content'
+import BadgeList from './BadgeList.astro'
+
+const articles = await getCollection('blog')
+
+const allTopics = Array.from(
+  new Set(articles.flatMap((a) => a.data.topics ?? [])),
+).toSorted()
+---
+
+<h2>Alle Themen</h2>
+
+<BadgeList items={allTopics} urlPrefix="/blog/thema" />

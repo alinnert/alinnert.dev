@@ -1,32 +1,16 @@
 ---
-import { getCollection } from 'astro:content'
-import ArticleLink from '../../components/ArticleLink.astro'
+import ArticlesListWidget from '../../components/ArticlesListWidget.astro'
+import ArticleTopicsListWidget from '../../components/ArticleTopicsListWidget.astro'
 import BlockList from '../../components/BlockList.astro'
 import TwoColumnsLayout from '../../layouts/TwoColumnsLayout.astro'
-
-const articles = await getCollection('blog')
 ---
 
-<TwoColumnsLayout title="Blog">
-  <Fragment slot="sidebar"> Sidebar </Fragment>
+<TwoColumnsLayout title="Alle Beiträge">
+  <Fragment slot="sidebar">
+    <ArticleTopicsListWidget />
+  </Fragment>
 
-  <p>
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio alias
-    aliquam, officiis consectetur magnam magni sint odio temporibus aut? Quae
-    dolores architecto maxime quaerat obcaecati blanditiis sequi corrupti
-    incidunt animi!
-  </p>
-
-  <BlockList>
-    {
-      articles.map((article) => (
-        <ArticleLink
-          title={article.data.title}
-          url={`/blog/${article.id}`}
-          published={article.data.published}
-          tags={article.data.tags}
-        />
-      ))
-    }
+  <BlockList columns={2}>
+    <ArticlesListWidget />
   </BlockList>
 </TwoColumnsLayout>
