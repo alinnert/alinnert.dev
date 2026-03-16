@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.17.1",
+    "astro": "^6.0.4",
     "astro-expressive-code": "^0.41.7",
     "remark-directive": "^4.0.0",
     "remark-github-admonitions-to-directives": "^2.1.0"
@@ -21,7 +21,7 @@
     "astro-icon": "^1.1.5",
     "hastscript": "^9.0.1",
     "remark-toc": "^9.0.0",
-    "sass": "^1.97.3",
+    "sass": "^1.98.0",
     "unist-util-visit": "^5.1.0"
   }
 }
