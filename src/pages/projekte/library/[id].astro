@@ -1,0 +1,19 @@
+---
+import ContentGrid from '../../../components/ContentGrid.astro';
+import TwoColumnsLayout from '../../../layouts/TwoColumnsLayout.astro';
+import { getStaticPathsFromProp } from '../../../lib/astro/staticPathsFromCollection'
+
+export const getStaticPaths = getStaticPathsFromProp('projects', 'libraries')
+
+const { propItem: framework } = Astro.props
+---
+
+<TwoColumnsLayout title={`Projekte mit ${framework}`}>
+  <Fragment slot="sidebar">
+    Sidebar...
+  </Fragment>
+
+  <ContentGrid columns={2}>
+    Projekte...
+  </ContentGrid>
+</TwoColumnsLayout>
