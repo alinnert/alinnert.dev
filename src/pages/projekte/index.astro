@@ -9,7 +9,7 @@ import IconProperty from '../../components/IconProperty.astro'
 const projects = await getCollection('projects')
 ---
 
-<TwoColumnsLayout title="Persönliche Projekte">
+<TwoColumnsLayout title="Meine Projekte">
   <Fragment slot="sidebar"> Sidebar </Fragment>
 
   <ContentGrid columns={2}>
@@ -21,7 +21,7 @@ const projects = await getCollection('projects')
               <IconProperty icon="ion:code-slash-outline" label="Sprache">
                 <BadgeList
                   items={project.data.languages}
-                  urlPrefix="/projekte/sprache/"
+                  urlPrefix="/projekte/sprache"
                 />
               </IconProperty>
             ) : null}
@@ -30,7 +30,7 @@ const projects = await getCollection('projects')
               <IconProperty icon="ion:cube-outline" label="Frameworks">
                 <BadgeList
                   items={project.data.frameworks}
-                  urlPrefix="/projekte/framework/"
+                  urlPrefix="/projekte/framework"
                 />
               </IconProperty>
             ) : null}
@@ -39,7 +39,7 @@ const projects = await getCollection('projects')
               <IconProperty icon="ion:grid-outline" label="Bibliotheken">
                 <BadgeList
                   items={project.data.libraries}
-                  urlPrefix="/projekte/library/"
+                  urlPrefix="/projekte/library"
                 />
               </IconProperty>
             ) : null}
@@ -48,7 +48,7 @@ const projects = await getCollection('projects')
               <IconProperty icon="ion:color-palette-outline" label="Styles">
                 <BadgeList
                   items={project.data.styles}
-                  urlPrefix="/projekte/styles/"
+                  urlPrefix="/projekte/styles"
                 />
               </IconProperty>
             ) : null}

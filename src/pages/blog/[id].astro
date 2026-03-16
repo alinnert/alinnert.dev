@@ -1,18 +1,12 @@
 ---
-import type { GetStaticPaths } from 'astro'
-import { getCollection, render } from 'astro:content'
+import { render } from 'astro:content'
 import BadgeList from '../../components/BadgeList.astro'
 import OneColumnLayout from '../../layouts/OneColumnLayout.astro'
+import { getStaticPathsFromCollection } from '../../lib/astro/staticPathsFromCollection'
 
-export const getStaticPaths = (async () => {
-  const articles = await getCollection('blog')
-  return articles.map((article) => ({
-    params: { id: article.id },
-    props: { article },
-  }))
-}) satisfies GetStaticPaths
+export const getStaticPaths = getStaticPathsFromCollection('blog')
 
-const { article } = Astro.props
+const { item: article } = Astro.props
 const { Content } = await render(article)
 ---
 

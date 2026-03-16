@@ -1,52 +1,44 @@
 ---
-import type { GetStaticPaths } from 'astro'
-import { getCollection, render } from 'astro:content'
+import { render } from 'astro:content'
 import BaseLayout from '../../layouts/BaseLayout.astro'
+import { getStaticPathsFromCollection } from '../../lib/astro/staticPathsFromCollection'
 
-export const getStaticPaths = (async () => {
-  const projects = await getCollection('projects')
-  return projects.map((project) => ({
-    params: { id: project.id },
-    props: { project },
-  }))
-}) satisfies GetStaticPaths
+export const getStaticPaths = getStaticPathsFromCollection('projects')
 
-const { project } = Astro.props
-const { Content } = await render(project)
+const { item } = Astro.props
+const { Content } = await render(item)
 ---
 
 <BaseLayout>
-  <a href="/projekte">&larr; Zurück</a>
-
-  <h1>{project.data.name}</h1>
+  <h1>{item.data.name}</h1>
 
   <dl>
     <dt>Sprachen</dt>
-    <dd>{project.data.languages.join(', ')}</dd>
+    <dd>{item.data.languages.join(', ')}</dd>
 
     {
-      project.data.styles !== undefined ? (
+      item.data.styles !== undefined ? (
         <Fragment>
           <dt>Styles</dt>
-          <dd>{project.data.styles?.join(', ')}</dd>
+          <dd>{item.data.styles?.join(', ')}</dd>
         </Fragment>
       ) : null
     }
 
     {
-      project.data.frameworks !== undefined ? (
+      item.data.frameworks !== undefined ? (
         <Fragment>
           <dt>Frameworks</dt>
-          <dd>{project.data.frameworks?.join(', ')}</dd>
+          <dd>{item.data.frameworks?.join(', ')}</dd>
         </Fragment>
       ) : null
     }
 
     {
-      project.data.libraries !== undefined ? (
+      item.data.libraries !== undefined ? (
         <Fragment>
           <dt>Bibliotheken</dt>
-          <dd>{project.data.libraries?.join(', ')}</dd>
+          <dd>{item.data.libraries?.join(', ')}</dd>
         </Fragment>
       ) : null
     }

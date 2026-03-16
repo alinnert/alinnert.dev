@@ -10,12 +10,7 @@ export const collections = {
       published: z.date(),
       topics: z.array(z.string()).optional(),
       followUpLinks: z
-        .array(
-          z.object({
-            label: z.string(),
-            url: z.string().url(),
-          }),
-        )
+        .array(z.object({ label: z.string(), url: z.url() }))
         .optional(),
     }),
   }),

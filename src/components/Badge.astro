@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components'
+import { join } from 'node:path'
 import { tagColorFromName, tagIconFromName } from '../lib/tagColor'
 
 type Props = { name: string; color?: string; urlPrefix?: string }
@@ -21,7 +22,7 @@ const tagIcon = tagIconFromName(name)
       <span>{name}</span>
     </span>
   ) : (
-    <a href={`${urlPrefix}/${name.toLowerCase()}`}>
+    <a href={join(urlPrefix, name.toLowerCase())}>
       <span class="label">
         {tagIcon !== null ? (
           <span>

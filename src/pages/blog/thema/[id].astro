@@ -1,33 +1,16 @@
 ---
-import type { GetStaticPaths } from 'astro'
-import { getCollection } from 'astro:content'
-import Card from '../../../components/Card.astro'
 import ContentGrid from '../../../components/ContentGrid.astro'
 import TwoColumnsLayout from '../../../layouts/TwoColumnsLayout.astro'
+import { getStaticPathsFromProp } from '../../../lib/astro/staticPathsFromCollection'
 import ArticleTopicsList from '../../../widgets/ArticleTopicsList.astro'
 import ArticlesList from '../../../widgets/ArticlesList.astro'
 
-const articles = await getCollection('blog')
+export const getStaticPaths = getStaticPathsFromProp('blog', 'topics')
 
-export const getStaticPaths = (async () => {
-  const articles = await getCollection('blog')
-  const topics = Array.from(
-    new Set(articles.flatMap((a) => a.data.topics ?? [])),
-  )
-  return topics.map((topic) => ({
-    params: { id: topic.toLowerCase() },
-    props: { tag: topic },
-  }))
-}) satisfies GetStaticPaths
-
-const { tag: topic } = Astro.props
-
-const articlesWithTag = articles.filter((a) =>
-  (a.data.topics ?? []).includes(topic),
-)
+const { propItem: topic } = Astro.props
 ---
 
-<TwoColumnsLayout title={`Beiträge zum Thema "${topic}"`}>
+<TwoColumnsLayout title={`Beiträge zum Thema ${topic}`}>
   <Fragment slot="sidebar">
     <ArticleTopicsList />
   </Fragment>
