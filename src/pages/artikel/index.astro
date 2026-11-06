@@ -1,13 +1,21 @@
 ---
+import { getCollection } from 'astro:content'
 import ContentGrid from '../../components/ContentGrid.astro'
 import TwoColumnsLayout from '../../layouts/TwoColumnsLayout.astro'
 import ArticlesList from '../../widgets/ArticlesList.astro'
-import ArticleTopicsList from '../../widgets/ArticleTopicsList.astro'
+import ContentFilter from '../../widgets/ContentFilter.astro'
+
+const articles = await getCollection('artikel')
 ---
 
 <TwoColumnsLayout title="Alle Beiträge">
   <Fragment slot="sidebar">
-    <ArticleTopicsList />
+    <ContentFilter
+      title="Themen"
+      baseUrl="/artikel/thema"
+      collection={articles}
+      filterProp="topics"
+    />
   </Fragment>
 
   <ContentGrid columns={2}>

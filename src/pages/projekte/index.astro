@@ -1,60 +1,42 @@
 ---
 import { getCollection } from 'astro:content'
-import BadgeList from '../../components/BadgeList.astro'
-import Card from '../../components/Card.astro'
 import ContentGrid from '../../components/ContentGrid.astro'
+import ProjectLink from '../../components/ProjectLink.astro'
 import TwoColumnsLayout from '../../layouts/TwoColumnsLayout.astro'
-import IconProperty from '../../components/IconProperty.astro'
+import ContentFilter from '../../widgets/ContentFilter.astro'
 
-const projects = await getCollection('projects')
+const projects = await getCollection('projekte')
 ---
 
-<TwoColumnsLayout title="Meine Projekte">
-  <Fragment slot="sidebar"> Sidebar </Fragment>
+<TwoColumnsLayout title="Alle Projekte">
+  <Fragment slot="sidebar">
+    <ContentFilter
+      title="Sprachen"
+      baseUrl="/projekte/sprache"
+      collection={projects}
+      filterProp="languages"
+    />
+    <ContentFilter
+      title="Frameworks"
+      baseUrl="/projekte/framework"
+      collection={projects}
+      filterProp="frameworks"
+    />
+    <ContentFilter
+      title="Libraries"
+      baseUrl="/projekte/library"
+      collection={projects}
+      filterProp="libraries"
+    />
+    <ContentFilter
+      title="Styles"
+      baseUrl="/projekte/styles"
+      collection={projects}
+      filterProp="styles"
+    />
+  </Fragment>
 
   <ContentGrid columns={2}>
-    {
-      projects.map((project) => (
-        <Card title={project.data.name} url={`/projekte/${project.id}`}>
-          <Fragment slot="props">
-            {(project.data.languages?.length ?? 0) > 0 ? (
-              <IconProperty icon="ion:code-slash-outline" label="Sprache">
-                <BadgeList
-                  items={project.data.languages}
-                  urlPrefix="/projekte/sprache"
-                />
-              </IconProperty>
-            ) : null}
-
-            {(project.data.frameworks?.length ?? 0) > 0 ? (
-              <IconProperty icon="ion:cube-outline" label="Frameworks">
-                <BadgeList
-                  items={project.data.frameworks}
-                  urlPrefix="/projekte/framework"
-                />
-              </IconProperty>
-            ) : null}
-
-            {(project.data.libraries?.length ?? 0) > 0 ? (
-              <IconProperty icon="ion:grid-outline" label="Bibliotheken">
-                <BadgeList
-                  items={project.data.libraries}
-                  urlPrefix="/projekte/library"
-                />
-              </IconProperty>
-            ) : null}
-
-            {(project.data.styles?.length ?? 0) > 0 ? (
-              <IconProperty icon="ion:color-palette-outline" label="Styles">
-                <BadgeList
-                  items={project.data.styles}
-                  urlPrefix="/projekte/styles"
-                />
-              </IconProperty>
-            ) : null}
-          </Fragment>
-        </Card>
-      ))
-    }
+    {projects.map((project) => <ProjectLink project={project} />)}
   </ContentGrid>
 </TwoColumnsLayout>

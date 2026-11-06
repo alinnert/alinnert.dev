@@ -1,19 +1,51 @@
 ---
-import ContentGrid from '../../../components/ContentGrid.astro';
-import TwoColumnsLayout from '../../../layouts/TwoColumnsLayout.astro';
+import { getCollection } from 'astro:content'
+import ContentGrid from '../../../components/ContentGrid.astro'
+import ProjectLink from '../../../components/ProjectLink.astro'
+import TwoColumnsLayout from '../../../layouts/TwoColumnsLayout.astro'
 import { getStaticPathsFromProp } from '../../../lib/astro/staticPathsFromCollection'
+import ContentFilter from '../../../widgets/ContentFilter.astro'
 
-export const getStaticPaths = getStaticPathsFromProp('projects', 'styles')
+export const getStaticPaths = getStaticPathsFromProp('projekte', 'styles')
 
-const { propItem: framework } = Astro.props
+const projects = await getCollection('projekte')
+
+const { propItem: styles } = Astro.props
 ---
 
-<TwoColumnsLayout title={`Projekte auf Basis von ${framework}`}>
+<TwoColumnsLayout title={`Projekte mit ${styles}`}>
   <Fragment slot="sidebar">
-    Sidebar...
+    <ContentFilter
+      title="Sprachen"
+      baseUrl="/projekte/sprache"
+      collection={projects}
+      filterProp="languages"
+    />
+    <ContentFilter
+      title="Frameworks"
+      baseUrl="/projekte/framework"
+      collection={projects}
+      filterProp="frameworks"
+    />
+    <ContentFilter
+      title="Libraries"
+      baseUrl="/projekte/library"
+      collection={projects}
+      filterProp="libraries"
+    />
+    <ContentFilter
+      title="Styles"
+      baseUrl="/projekte/styles"
+      collection={projects}
+      filterProp="styles"
+    />
   </Fragment>
 
   <ContentGrid columns={2}>
-    Projekte...
+    {
+      projects
+        .filter((p) => p.data.styles?.includes(styles))
+        .map((project) => <ProjectLink project={project} />)
+    }
   </ContentGrid>
 </TwoColumnsLayout>

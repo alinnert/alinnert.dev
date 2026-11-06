@@ -1,6 +1,4 @@
 ---
-import IconProperty from './IconProperty.astro'
-
 export type Property = {
   icon: string
   content: any
@@ -19,9 +17,21 @@ const { title, url } = Astro.props
     <h2><a href={url}>{title}</a></h2>
   </header>
 
-  <div class="properties">
-    <slot name="props" />
-  </div>
+  {
+    Astro.slots.has('props') ? (
+      <div class="properties">
+        <slot name="props" />
+      </div>
+    ) : null
+  }
+
+  {
+    Astro.slots.has('details') ? (
+      <div class="details">
+        <slot name="details" />
+      </div>
+    ) : null
+  }
 </article>
 
 <style lang="scss">
@@ -31,20 +41,23 @@ const { title, url } = Astro.props
     @include card();
     display: grid;
     grid-template-rows: auto 1fr;
+    gap: var(--spacing-1);
     align-items: start;
-  }
-
-  header {
-    margin-bottom: var(--spacing-4);
   }
 
   .properties {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 150px 1fr;
     row-gap: var(--spacing-2);
     font-size: var(--text-sm);
     font-weight: var(--font-weight-bold);
     color: var(--theme-page--text-color--muted);
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-1);
   }
 
   h2 {

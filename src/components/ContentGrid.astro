@@ -6,14 +6,14 @@ type Props = {
 const { columns = 1 } = Astro.props
 ---
 
-<div>
+<div class="content-grid">
   <slot />
 </div>
 
 <style define:vars={{ columns }}>
-  div {
+  .content-grid {
     display: grid;
-    grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+    grid-template-columns: 1fr;
     gap: var(--spacing-4);
   }
 </style>

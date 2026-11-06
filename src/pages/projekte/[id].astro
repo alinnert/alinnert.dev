@@ -1,9 +1,11 @@
 ---
 import { render } from 'astro:content'
+import BadgeList from '../../components/BadgeList.astro'
+import IconProperty from '../../components/IconProperty.astro'
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import { getStaticPathsFromCollection } from '../../lib/astro/staticPathsFromCollection'
 
-export const getStaticPaths = getStaticPathsFromCollection('projects')
+export const getStaticPaths = getStaticPathsFromCollection('projekte')
 
 const { item } = Astro.props
 const { Content } = await render(item)
@@ -12,37 +14,57 @@ const { Content } = await render(item)
 <BaseLayout>
   <h1>{item.data.name}</h1>
 
-  <dl>
-    <dt>Sprachen</dt>
-    <dd>{item.data.languages.join(', ')}</dd>
-
+  <div class="properties">
     {
-      item.data.styles !== undefined ? (
-        <Fragment>
-          <dt>Styles</dt>
-          <dd>{item.data.styles?.join(', ')}</dd>
-        </Fragment>
+      (item.data.languages?.length ?? 0) > 0 ? (
+        <IconProperty icon="ion:code-slash-outline" label="Sprache">
+          <BadgeList
+            items={item.data.languages}
+            urlPrefix="/projekte/sprache"
+          />
+        </IconProperty>
       ) : null
     }
-
     {
-      item.data.frameworks !== undefined ? (
-        <Fragment>
-          <dt>Frameworks</dt>
-          <dd>{item.data.frameworks?.join(', ')}</dd>
-        </Fragment>
+      (item.data.frameworks?.length ?? 0) > 0 ? (
+        <IconProperty icon="ion:cube-outline" label="Frameworks">
+          <BadgeList
+            items={item.data.frameworks}
+            urlPrefix="/projekte/framework"
+          />
+        </IconProperty>
       ) : null
     }
-
     {
-      item.data.libraries !== undefined ? (
-        <Fragment>
-          <dt>Bibliotheken</dt>
-          <dd>{item.data.libraries?.join(', ')}</dd>
-        </Fragment>
+      (item.data.libraries?.length ?? 0) > 0 ? (
+        <IconProperty icon="ion:grid-outline" label="Bibliotheken">
+          <BadgeList
+            items={item.data.libraries}
+            urlPrefix="/projekte/library"
+          />
+        </IconProperty>
       ) : null
     }
-  </dl>
+    {
+      (item.data.styles?.length ?? 0) > 0 ? (
+        <IconProperty icon="ion:color-palette-outline" label="Styles">
+          <BadgeList items={item.data.styles} urlPrefix="/projekte/styles" />
+        </IconProperty>
+      ) : null
+    }
+  </div>
 
   <Content />
 </BaseLayout>
+
+<style>
+  .properties {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: var(--spacing-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--theme-page--text-color--muted);
+    margin-bottom: var(--spacing-8);
+  }
+</style>

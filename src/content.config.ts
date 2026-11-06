@@ -3,8 +3,8 @@ import { z } from 'astro/zod'
 import { defineCollection } from 'astro:content'
 
 export const collections = {
-  blog: defineCollection({
-    loader: glob({ base: './src/data/blog', pattern: '*.md' }),
+  artikel: defineCollection({
+    loader: glob({ base: './content/artikel', pattern: '*.md' }),
     schema: z.object({
       title: z.string(),
       published: z.date(),
@@ -14,8 +14,8 @@ export const collections = {
         .optional(),
     }),
   }),
-  projects: defineCollection({
-    loader: glob({ base: './src/data/projects', pattern: '*.md' }),
+  projekte: defineCollection({
+    loader: glob({ base: './content/projekte', pattern: '*.md' }),
     schema: z.object({
       name: z.string(),
       type: z.enum(['frontend', 'library']),

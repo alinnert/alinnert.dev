@@ -4,14 +4,14 @@ import BadgeList from '../../components/BadgeList.astro'
 import OneColumnLayout from '../../layouts/OneColumnLayout.astro'
 import { getStaticPathsFromCollection } from '../../lib/astro/staticPathsFromCollection'
 
-export const getStaticPaths = getStaticPathsFromCollection('blog')
+export const getStaticPaths = getStaticPathsFromCollection('artikel')
 
 const { item: article } = Astro.props
 const { Content } = await render(article)
 ---
 
 <OneColumnLayout title={article.data.title}>
-  <BadgeList items={article.data.topics} urlPrefix="/blog/thema" />
+  <BadgeList items={article.data.topics} urlPrefix="/artikel/thema" />
 
   <article>
     <Content />

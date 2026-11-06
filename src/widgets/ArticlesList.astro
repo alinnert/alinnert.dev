@@ -2,13 +2,12 @@
 import { getCollection } from 'astro:content'
 import BadgeList from '../components/BadgeList.astro'
 import Card from '../components/Card.astro'
-import IconProperty from '../components/IconProperty.astro'
 
 type Props = { topic?: string }
 
 const { topic } = Astro.props
 
-const articles = await getCollection('blog')
+const articles = await getCollection('artikel')
 
 const filteredArticles =
   topic !== undefined
@@ -20,18 +19,18 @@ const filteredArticles =
   filteredArticles
     .toSorted((a, b) => (a.data.published < b.data.published ? 1 : -1))
     .map((article) => (
-      <Card title={article.data.title} url={`/blog/${article.id}`}>
-        <Fragment slot="props">
-          <IconProperty icon="ion:calendar-outline">
+      <Card title={article.data.title} url={`/artikel/${article.id}`}>
+        <Fragment slot="details">
+          <div>
             {article.data.published.toLocaleString('de-DE', {
               day: 'numeric',
               month: 'long',
               year: 'numeric',
             })}
-          </IconProperty>
-          <IconProperty icon="ion:pricetag-outline">
-            <BadgeList items={article.data.topics} urlPrefix="/blog/thema" />
-          </IconProperty>
+          </div>
+          <div>
+            <BadgeList items={article.data.topics} urlPrefix="/artikel/thema" />
+          </div>
         </Fragment>
       </Card>
     ))

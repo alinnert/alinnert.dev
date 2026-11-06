@@ -41,8 +41,8 @@ $tokens: (
   ),
   bg: (
     light: (
-      lightness: 0.95,
-      chroma-factor: 0.5,
+      lightness: 0.99,
+      chroma-factor: 0.2,
     ),
     dark: (
       lightness: 0.35,
@@ -51,7 +51,7 @@ $tokens: (
   ),
   bg-bright: (
     light: (
-      lightness: 0.98,
+      lightness: 0.95,
       chroma-factor: 0.5,
     ),
     dark: (

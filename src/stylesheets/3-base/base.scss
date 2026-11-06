@@ -63,6 +63,12 @@
     color: var(--palette-code-text);
   }
 
+  hr {
+    border-width: 1px 0 0;
+    border-color: var(--palette-neutral-border);
+    border-style: solid;
+  }
+
   main {
     :first-child {
       margin-top: 0;

@@ -1,18 +1,26 @@
 ---
+import { getCollection } from 'astro:content'
 import ContentGrid from '../../../components/ContentGrid.astro'
 import TwoColumnsLayout from '../../../layouts/TwoColumnsLayout.astro'
 import { getStaticPathsFromProp } from '../../../lib/astro/staticPathsFromCollection'
-import ArticleTopicsList from '../../../widgets/ArticleTopicsList.astro'
 import ArticlesList from '../../../widgets/ArticlesList.astro'
+import ContentFilter from '../../../widgets/ContentFilter.astro'
 
-export const getStaticPaths = getStaticPathsFromProp('blog', 'topics')
+export const getStaticPaths = getStaticPathsFromProp('artikel', 'topics')
+
+const articles = await getCollection('artikel')
 
 const { propItem: topic } = Astro.props
 ---
 
 <TwoColumnsLayout title={`Beiträge zum Thema ${topic}`}>
   <Fragment slot="sidebar">
-    <ArticleTopicsList />
+    <ContentFilter
+      title="Themen"
+      baseUrl="/artikel/thema"
+      collection={articles}
+      filterProp="topics"
+    />
   </Fragment>
 
   <ContentGrid columns={2}>

@@ -1,7 +1,7 @@
 @use './mixins/palette.scss' as *;
 
 :root {
-  @include palette($name: 'neutral', $hue: 285, $chroma: 0.02);
+  @include palette($name: 'neutral', $hue: 320, $chroma: 0.015);
   @include palette($name: 'primary', $hue: 180, $chroma: 0.1);
   @include palette($name: 'code', $hue: 220, $chroma: 0.05);
   @include palette($name: 'link', $hue: 220, $chroma: 0.1);

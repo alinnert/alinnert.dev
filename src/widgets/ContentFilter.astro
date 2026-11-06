@@ -1,0 +1,48 @@
+---
+import type { CollectionKey } from 'astro:content'
+import { getCollection } from 'astro:content'
+import BadgeList from '../components/BadgeList.astro'
+
+type GetCollectionResult = Awaited<
+  ReturnType<typeof getCollection<CollectionKey>>
+>
+
+type Props = {
+  title: string
+  baseUrl: string
+  collection: GetCollectionResult
+  filterProp: string
+}
+
+const { title, baseUrl, collection, filterProp } = Astro.props
+
+const allTopics = Array.from(
+  new Set(
+    collection.flatMap((item) => {
+      type DataKey = keyof (typeof item)['data']
+      return item.data[filterProp as DataKey]
+    }),
+  ),
+)
+  .filter((item) => item !== undefined)
+  .toSorted()
+---
+
+<search>
+  <h2>{title}</h2>
+
+  <BadgeList items={allTopics} urlPrefix={baseUrl} />
+</search>
+
+<style>
+  search {
+    &:not(:first-child) {
+      margin-top: var(--spacing-8);
+    }
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: var(--spacing-2);
+  }
+</style>
