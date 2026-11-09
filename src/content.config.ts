@@ -18,7 +18,7 @@ export const collections = {
     loader: glob({ base: './content/projekte', pattern: '*.md' }),
     schema: z.object({
       name: z.string(),
-      type: z.enum(['frontend', 'library']),
+      type: z.enum(['frontend', 'library', 'website']),
       description: z.string().optional(),
       languages: z.array(z.string()),
       styles: z.array(z.string()).optional(),

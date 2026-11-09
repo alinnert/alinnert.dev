@@ -15,6 +15,7 @@ const badgesData: Record<string, BadgeData> = {
   Pinia: { color: 'oklch(70% 0.18 90)', icon: 'simple-icons:pinia' },
   PostgreSQL: { color: '#4169E1', icon: 'simple-icons:postgresql' },
   Quarkus: { color: '#4695EB', icon: 'simple-icons:quarkus' },
+  Sass: { color: '#CC6699', icon: 'simple-icons:sass' },
   Spring: { color: '#6DB33F', icon: 'simple-icons:spring' },
   SQLite: { color: 'oklch(0.5 0.1 237)', icon: 'simple-icons:sqlite' },
   TypeScript: { color: '#3178C6', icon: 'simple-icons:typescript' },
