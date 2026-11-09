@@ -11,7 +11,7 @@ const { icon, label } = Astro.props
     <Icon name={icon} />
     {label !== undefined ? <span class="label">{label}</span> : null}
   </span>
-  <span>
+  <span class="content">
     <slot />
   </span>
 </div>
@@ -38,5 +38,10 @@ const { icon, label } = Astro.props
   .label {
     margin-right: var(--spacing-4);
     user-select: none;
+  }
+
+  .content:has(a) {
+    overflow: hidden;
+    word-wrap: break-word;
   }
 </style>

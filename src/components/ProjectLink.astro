@@ -56,7 +56,9 @@ const { project } = Astro.props
     {
       (project.data.repository?.length ?? 0) > 0 ? (
         <IconProperty icon="ion:git-branch-outline" label="Repository">
-          <a href={project.data.repository}>{project.data.repository}</a>
+          <a href={project.data.repository}>
+            {project.data.repository?.replace(/^https:\/\//, '')}
+          </a>
         </IconProperty>
       ) : null
     }
@@ -64,7 +66,9 @@ const { project } = Astro.props
     {
       (project.data.website?.length ?? 0) > 0 ? (
         <IconProperty icon="ion:link-outline" label="Webseite">
-          <a href={project.data.website}>{project.data.website}</a>
+          <a href={project.data.website}>
+            {project.data.website?.replace(/^https:\/\//, '')}
+          </a>
         </IconProperty>
       ) : null
     }
