@@ -1,0 +1,19 @@
+<div class="icon-property-list">
+  <slot />
+</div>
+
+<style>
+  .icon-property-list {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    row-gap: var(--spacing-2);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--theme-page--text-color--muted);
+
+    @media (width < 600px) {
+      grid-template-columns: 1fr;
+      row-gap: var(--spacing-3);
+    }
+  }
+</style>

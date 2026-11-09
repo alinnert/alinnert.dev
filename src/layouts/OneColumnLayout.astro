@@ -1,14 +1,8 @@
 ---
 import BaseLayout from './BaseLayout.astro'
-
-type Props = { title: string }
-
-const { title } = Astro.props
 ---
 
 <BaseLayout>
-  <h1>{title}</h1>
-
   <main>
     <slot />
   </main>

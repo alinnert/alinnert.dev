@@ -2,8 +2,10 @@
 import { render } from 'astro:content'
 import BadgeList from '../../components/BadgeList.astro'
 import IconProperty from '../../components/IconProperty.astro'
-import BaseLayout from '../../layouts/BaseLayout.astro'
+import IconPropertyList from '../../components/IconPropertyList.astro'
+import OneColumnLayout from '../../layouts/OneColumnLayout.astro'
 import { getStaticPathsFromCollection } from '../../lib/astro/staticPathsFromCollection'
+import Article from '../../components/Article.astro'
 
 export const getStaticPaths = getStaticPathsFromCollection('projekte')
 
@@ -11,60 +13,67 @@ const { item } = Astro.props
 const { Content } = await render(item)
 ---
 
-<BaseLayout>
-  <h1>{item.data.name}</h1>
+<OneColumnLayout>
+  <Article title={item.data.name}>
+    <Fragment slot="header">
+      <IconPropertyList>
+        {
+          (item.data.languages?.length ?? 0) > 0 ? (
+            <IconProperty icon="ion:code-slash-outline" label="Sprache">
+              <BadgeList
+                items={item.data.languages}
+                urlPrefix="/projekte/sprache"
+              />
+            </IconProperty>
+          ) : null
+        }
+        {
+          (item.data.frameworks?.length ?? 0) > 0 ? (
+            <IconProperty icon="ion:cube-outline" label="Frameworks">
+              <BadgeList
+                items={item.data.frameworks}
+                urlPrefix="/projekte/framework"
+              />
+            </IconProperty>
+          ) : null
+        }
+        {
+          (item.data.libraries?.length ?? 0) > 0 ? (
+            <IconProperty icon="ion:grid-outline" label="Bibliotheken">
+              <BadgeList
+                items={item.data.libraries}
+                urlPrefix="/projekte/bibliothek"
+              />
+            </IconProperty>
+          ) : null
+        }
+        {
+          (item.data.styles?.length ?? 0) > 0 ? (
+            <IconProperty icon="ion:color-palette-outline" label="Styles">
+              <BadgeList
+                items={item.data.styles}
+                urlPrefix="/projekte/styles"
+              />
+            </IconProperty>
+          ) : null
+        }
+        {
+          (item.data.repository?.length ?? 0) > 0 ? (
+            <IconProperty icon="ion:git-branch-outline" label="Repository">
+              <a href={item.data.repository}>{item.data.repository}</a>
+            </IconProperty>
+          ) : null
+        }
+        {
+          (item.data.website?.length ?? 0) > 0 ? (
+            <IconProperty icon="ion:link-outline" label="Webseite">
+              <a href={item.data.website}>{item.data.website}</a>
+            </IconProperty>
+          ) : null
+        }
+      </IconPropertyList>
+    </Fragment>
 
-  <div class="properties">
-    {
-      (item.data.languages?.length ?? 0) > 0 ? (
-        <IconProperty icon="ion:code-slash-outline" label="Sprache">
-          <BadgeList
-            items={item.data.languages}
-            urlPrefix="/projekte/sprache"
-          />
-        </IconProperty>
-      ) : null
-    }
-    {
-      (item.data.frameworks?.length ?? 0) > 0 ? (
-        <IconProperty icon="ion:cube-outline" label="Frameworks">
-          <BadgeList
-            items={item.data.frameworks}
-            urlPrefix="/projekte/framework"
-          />
-        </IconProperty>
-      ) : null
-    }
-    {
-      (item.data.libraries?.length ?? 0) > 0 ? (
-        <IconProperty icon="ion:grid-outline" label="Bibliotheken">
-          <BadgeList
-            items={item.data.libraries}
-            urlPrefix="/projekte/library"
-          />
-        </IconProperty>
-      ) : null
-    }
-    {
-      (item.data.styles?.length ?? 0) > 0 ? (
-        <IconProperty icon="ion:color-palette-outline" label="Styles">
-          <BadgeList items={item.data.styles} urlPrefix="/projekte/styles" />
-        </IconProperty>
-      ) : null
-    }
-  </div>
-
-  <Content />
-</BaseLayout>
-
-<style>
-  .properties {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    row-gap: var(--spacing-2);
-    font-size: var(--text-sm);
-    font-weight: var(--font-weight-bold);
-    color: var(--theme-page--text-color--muted);
-    margin-bottom: var(--spacing-8);
-  }
-</style>
+    <Content />
+  </Article>
+</OneColumnLayout>

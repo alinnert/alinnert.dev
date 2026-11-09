@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components'
 import { join } from 'node:path'
-import { tagColorFromName, tagIconFromName } from '../lib/tagColor'
+import { tagColorFromName, tagIconFromName } from '../lib/tagData'
 
 type Props = { name: string; color?: string; urlPrefix?: string }
 
@@ -37,13 +37,28 @@ const tagIcon = tagIconFromName(name)
 
 <style define:vars={{ 'tag-color': tagColor }}>
   .label {
-    --gradient-base: var(--tag-color, var(--theme-palette-neutral-light-500));
-    --gradient-target: oklch(
-      from var(--gradient-base) calc(l * 0.8) calc(c * 1.2) calc(h - 5)
+    --gradient-base-color: var(
+      --tag-color,
+      var(--theme-palette-neutral-light-500)
+    );
+    --gradient-light-color: oklch(
+      from var(--gradient-base-color) calc(l * 1.1) c h
+    );
+    --gradient-dark-color: oklch(
+      from color-mix(in srgb, var(--gradient-base-color), hsl(200 90 30) 30%)
+        calc(l * 0.95) c h
+    );
+    --gradient: linear-gradient(
+      to left in oklch,
+      var(--gradient-light-color),
+      var(--gradient-dark-color)
     );
 
     @media (prefers-color-scheme: dark) {
-      --gradient-base: var(--tag-color, var(--theme-palette-neutral-dark-600));
+      --gradient-base-color: var(
+        --tag-color,
+        var(--theme-palette-neutral-dark-600)
+      );
     }
 
     display: inline-flex;
@@ -54,12 +69,12 @@ const tagIcon = tagIconFromName(name)
     font-weight: var(--font-weight-bold);
     padding-inline: var(--spacing-2);
     padding-block: var(--spacing-1);
-    background: linear-gradient(
-      110deg in oklch,
-      var(--gradient-base),
-      var(--gradient-target)
-    );
+    background: var(--gradient);
     border-radius: var(--radius-md);
+    user-select: none;
+    box-shadow:
+      0 0 0 1px light-dark(var(--gradient-dark-color), var(--gradient-light-color)) inset;
+    text-shadow: 0 0 2px var(--gradient-dark-color);
   }
 
   span:has(> svg) {

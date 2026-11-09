@@ -24,6 +24,7 @@ const { icon, label } = Astro.props
     grid-template-columns: subgrid;
     align-items: first baseline;
     column-gap: var(--spacing-2);
+    row-gap: var(--spacing-1);
   }
 
   .icon {
@@ -36,5 +37,6 @@ const { icon, label } = Astro.props
 
   .label {
     margin-right: var(--spacing-4);
+    user-select: none;
   }
 </style>

@@ -1,0 +1,7 @@
+@layer overrides {
+  .expressive-code {
+    .frame {
+      box-shadow: none !important;
+    }
+  }
+}

@@ -1,16 +1,8 @@
----
-type Props = {
-  columns?: number
-}
-
-const { columns = 1 } = Astro.props
----
-
 <div class="content-grid">
   <slot />
 </div>
 
-<style define:vars={{ columns }}>
+<style>
   .content-grid {
     display: grid;
     grid-template-columns: 1fr;

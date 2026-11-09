@@ -1,19 +1,34 @@
 ---
+import Article from '../components/Article.astro'
+import IconProperty from '../components/IconProperty.astro'
+import IconPropertyList from '../components/IconPropertyList.astro'
 import BaseLayout from '../layouts/BaseLayout.astro'
 ---
 
 <BaseLayout>
-  <p>
-    Mein Name ist Andreas Linnert und ich bin ein Software-Entwickler mit Fokus
-    auf Frontend-Entwicklung.
-  </p>
-  <h2>Kontaktdaten</h2>
-  <p>
-    Andreas Linnert<br />
-    Von-Kleist-Str. 9<br />
-    94315 Straubing
-  </p>
-  <p>
-    E-Mail: <a href="mailto:andreas@linnertmedia.de">andreas@linnertmedia.de</a>
-  </p>
+  <Article title="alinnert.dev">
+    <p>
+      Mein Name ist Andreas Linnert und ich bin ein Software-Entwickler mit
+      Fokus auf das Web-Frontend. Ich baue Webseiten und Webanwendungen, die
+      einem bei der Arbeit oder im Privaten unterstützen.
+    </p>
+
+    <h2>Kontaktdaten</h2>
+
+    <IconPropertyList>
+      <IconProperty icon="simple-icons:github" label="GitHub">
+        <a href="https://github.com/alinnert">github.com/alinnert</a>
+      </IconProperty>
+      <IconProperty icon="ion:email" label="E-Mail">
+        <a href="mailto:andreas@linnertmedia.de">andreas@linnertmedia.de</a>
+      </IconProperty>
+    </IconPropertyList>
+
+    <h3>Impressum</h3>
+    <p>
+      Andreas Linnert<br />
+      Von-Kleist-Str. 9<br />
+      94315 Straubing
+    </p>
+  </Article>
 </BaseLayout>

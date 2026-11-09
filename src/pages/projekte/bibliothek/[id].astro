@@ -29,7 +29,7 @@ const { propItem: library } = Astro.props
     />
     <ContentFilter
       title="Libraries"
-      baseUrl="/projekte/library"
+      baseUrl="/projekte/bibliothek"
       collection={projects}
       filterProp="libraries"
     />
@@ -41,7 +41,7 @@ const { propItem: library } = Astro.props
     />
   </Fragment>
 
-  <ContentGrid columns={2}>
+  <ContentGrid>
     {
       projects
         .filter((p) => p.data.libraries?.includes(library))

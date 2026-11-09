@@ -328,7 +328,23 @@
     --color-black: #000;
     --color-white: #fff;
 
+    --spacing-px: 1px;
     --spacing: 0.25rem;
+    --spacing-0_5: calc(var(--spacing) * 0.5);
+    --spacing-1: calc(var(--spacing) * 1);
+    --spacing-1_5: calc(var(--spacing) * 1.5);
+    --spacing-2: calc(var(--spacing) * 2);
+    --spacing-3: calc(var(--spacing) * 3);
+    --spacing-4: calc(var(--spacing) * 4);
+    --spacing-6: calc(var(--spacing) * 6);
+    --spacing-8: calc(var(--spacing) * 8);
+    --spacing-12: calc(var(--spacing) * 12);
+    --spacing-16: calc(var(--spacing) * 16);
+    --spacing-20: calc(var(--spacing) * 20);
+    --spacing-30: calc(var(--spacing) * 30);
+    --spacing-40: calc(var(--spacing) * 40);
+    --spacing-50: calc(var(--spacing) * 50);
+    --spacing-60: calc(var(--spacing) * 60);
 
     --breakpoint-sm: 40rem;
     --breakpoint-md: 48rem;
@@ -350,32 +366,20 @@
     --container-6xl: 72rem;
     --container-7xl: 80rem;
 
-    --text-xs: 0.75rem;
+    --text-xs: clamp(0.83rem, -0.08vi + 0.85rem, 0.78rem);
+    --text-sm: clamp(0.91rem, 0.05vi + 0.9rem, 0.94rem);
+    --text-base: clamp(1rem, 0.23vi + 0.94rem, 1.13rem);
+    --text-lg: clamp(1.1rem, 0.45vi + 0.99rem, 1.35rem);
+    --text-xl: clamp(1.21rem, 0.75vi + 1.02rem, 1.62rem);
+    --text-2xl: clamp(1.33rem, 1.11vi + 1.05rem, 1.94rem);
+    --text-3xl: clamp(1.46rem, 1.58vi + 1.07rem, 2.33rem);
+
     --text-xs--line-height: calc(1 / 0.75);
-    --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
-    --text-base: 1rem;
     --text-base--line-height: calc(1.5 / 1);
-    --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.9 / 1.125);
-    --text-xl: 1.25rem;
     --text-xl--line-height: calc(1.9 / 1.25);
-    --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
-    --text-3xl: 1.875rem;
-    --text-3xl--line-height: calc(2.25 / 1.875);
-    --text-4xl: 2.25rem;
-    --text-4xl--line-height: calc(2.5 / 2.25);
-    --text-5xl: 3rem;
-    --text-5xl--line-height: 1;
-    --text-6xl: 3.75rem;
-    --text-6xl--line-height: 1;
-    --text-7xl: 4.5rem;
-    --text-7xl--line-height: 1;
-    --text-8xl: 6rem;
-    --text-8xl--line-height: 1;
-    --text-9xl: 8rem;
-    --text-9xl--line-height: 1;
 
     --font-weight-thin: 100;
     --font-weight-extralight: 200;

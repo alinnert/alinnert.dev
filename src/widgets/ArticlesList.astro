@@ -21,7 +21,7 @@ const filteredArticles =
     .map((article) => (
       <Card title={article.data.title} url={`/artikel/${article.id}`}>
         <Fragment slot="details">
-          <div>
+          <div class="date">
             {article.data.published.toLocaleString('de-DE', {
               day: 'numeric',
               month: 'long',
@@ -35,3 +35,11 @@ const filteredArticles =
       </Card>
     ))
 }
+
+<style>
+  .date {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--palette-neutral-text-muted);
+  }
+</style>

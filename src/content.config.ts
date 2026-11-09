@@ -19,11 +19,13 @@ export const collections = {
     schema: z.object({
       name: z.string(),
       type: z.enum(['frontend', 'library']),
+      description: z.string().optional(),
       languages: z.array(z.string()),
       styles: z.array(z.string()).optional(),
       frameworks: z.array(z.string()).optional(),
       libraries: z.array(z.string()).optional(),
       repository: z.string().optional(),
+      website: z.string().optional(),
     }),
   }),
 }

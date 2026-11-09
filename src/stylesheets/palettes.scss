@@ -1,27 +1,26 @@
-@use './mixins/palette.scss' as *;
+@use './mixins/generate-palette.scss' as *;
 
 :root {
-  @include palette($name: 'neutral', $hue: 320, $chroma: 0.015);
-  @include palette($name: 'primary', $hue: 180, $chroma: 0.1);
-  @include palette($name: 'code', $hue: 220, $chroma: 0.05);
-  @include palette($name: 'link', $hue: 220, $chroma: 0.1);
+  @include generate-palette($name: 'neutral', $hue: 320, $chroma: 0.015);
+  @include generate-palette($name: 'primary', $hue: 180, $chroma: 0.1);
+  @include generate-palette($name: 'code', $hue: 220, $chroma: 0.05);
+  @include generate-palette($name: 'link', $hue: 220, $chroma: 0.1);
+  @include generate-palette($name: 'info', $hue: 240, $chroma: 0.025);
 
-  --gradient-primary-base-hue: 180;
-  --gradient-primary-base: oklch(0.6 0.16 var(--gradient-primary-base-hue));
+  --gradient-primary-from-hue: 180;
+  --gradient-primary-from: oklch(0.6 0.16 var(--gradient-primary-from-hue));
+  --gradient-primary-to-hue: calc(var(--gradient-primary-from-hue) + 180);
+  --gradient-primary-to: oklch(
+    from var(--gradient-primary-from) l c var(--gradient-primary-to-hue)
+  );
 
   @media (prefers-color-scheme: dark) {
-    --gradient-primary-base: oklch(0.8 0.16 var(--gradient-primary-base-hue));
+    --gradient-primary-from: oklch(0.8 0.16 var(--gradient-primary-from-hue));
   }
 
   --gradient-primary: linear-gradient(
     135deg in oklch increasing hue,
-    var(--gradient-primary-base),
-    oklch(from var(--gradient-primary-base) l c calc(h + 180))
-  );
-
-  --gradient-logo: linear-gradient(
-    to right in oklch,
-    var(--palette-primary-text-muted),
-    oklch(from var(--palette-primary-text-muted) l c calc(h + 50))
+    var(--gradient-primary-from),
+    var(--gradient-primary-to)
   );
 }

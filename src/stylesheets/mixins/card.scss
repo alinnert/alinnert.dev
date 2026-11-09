@@ -1,5 +1,5 @@
 @mixin card() {
-  background: var(--palette-neutral-bg-bright);
+  background: var(--palette-neutral-bg-card);
   border: 1px solid var(--palette-neutral-border);
   border-radius: var(--radius-lg);
   padding: var(--spacing-4);

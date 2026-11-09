@@ -23,8 +23,8 @@ const projects = await getCollection('projekte')
       filterProp="frameworks"
     />
     <ContentFilter
-      title="Libraries"
-      baseUrl="/projekte/library"
+      title="Bibliotheken"
+      baseUrl="/projekte/bibliothek"
       collection={projects}
       filterProp="libraries"
     />
@@ -36,7 +36,7 @@ const projects = await getCollection('projekte')
     />
   </Fragment>
 
-  <ContentGrid columns={2}>
+  <ContentGrid>
     {projects.map((project) => <ProjectLink project={project} />)}
   </ContentGrid>
 </TwoColumnsLayout>

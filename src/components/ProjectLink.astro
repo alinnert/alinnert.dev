@@ -9,7 +9,8 @@ type Props = { project: CollectionEntry<'projekte'> }
 const { project } = Astro.props
 ---
 
-<Card title={project.data.name} url={`/projekte/${project.id}`}>
+<!-- <Card title={project.data.name} url={`/projekte/${project.id}`}> -->
+<Card title={project.data.name}>
   <Fragment slot="props">
     {
       (project.data.languages?.length ?? 0) > 0 ? (
@@ -38,7 +39,7 @@ const { project } = Astro.props
         <IconProperty icon="ion:grid-outline" label="Bibliotheken">
           <BadgeList
             items={project.data.libraries}
-            urlPrefix="/projekte/library"
+            urlPrefix="/projekte/bibliothek"
           />
         </IconProperty>
       ) : null
@@ -51,5 +52,31 @@ const { project } = Astro.props
         </IconProperty>
       ) : null
     }
+
+    {
+      (project.data.repository?.length ?? 0) > 0 ? (
+        <IconProperty icon="ion:git-branch-outline" label="Repository">
+          <a href={project.data.repository}>{project.data.repository}</a>
+        </IconProperty>
+      ) : null
+    }
+
+    {
+      (project.data.website?.length ?? 0) > 0 ? (
+        <IconProperty icon="ion:link-outline" label="Webseite">
+          <a href={project.data.website}>{project.data.website}</a>
+        </IconProperty>
+      ) : null
+    }
+  </Fragment>
+
+  <Fragment slot="details">
+    <p>{project.data.description}</p>
   </Fragment>
 </Card>
+
+<style>
+  p {
+    margin-block: 0;
+  }
+</style>

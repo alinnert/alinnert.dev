@@ -1,0 +1,28 @@
+---
+type Props = {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<article>
+  <header>
+    <h1>{title}</h1>
+    <slot name="header" />
+  </header>
+
+  <div class="prose">
+    <slot />
+  </div>
+</article>
+
+<style>
+  header {
+    margin-bottom: var(--spacing-16);
+  }
+
+  h1 {
+    text-wrap-style: balance;
+  }
+</style>
