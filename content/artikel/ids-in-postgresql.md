@@ -1,6 +1,6 @@
 ---
 title: 'Primärschlüssel und externe IDs in PostgreSQL'
-published: 2026-02-23
+published: 2026-11-10
 topics:
   - Datenbanken
   - PostgreSQL
